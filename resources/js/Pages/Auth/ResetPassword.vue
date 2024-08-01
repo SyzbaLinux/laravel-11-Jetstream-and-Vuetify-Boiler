@@ -1,11 +1,6 @@
 <script setup>
 import { Head, useForm } from '@inertiajs/vue3';
-import AuthenticationCard from '@/Components/AuthenticationCard.vue';
-import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+import Default from "@/Layouts/Default.vue";
 
 const props = defineProps({
     email: String,
@@ -29,57 +24,57 @@ const submit = () => {
 <template>
     <Head title="Reset Password" />
 
-    <AuthenticationCard>
-        <template #logo>
-            <AuthenticationCardLogo />
-        </template>
-
+    <Default>
         <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
-                <TextInput
-                    id="email"
-                    v-model="form.email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    required
-                    autofocus
-                    autocomplete="username"
-                />
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
+            <v-card class="glass mx-auto" max-width="500">
+                <v-card-text class="text-center mt-3">
+                    <h1>Password Reset</h1>
+                    <hr class="my-2">
+                    <p>
+                      Add a new strong password
+                    </p>
+                </v-card-text>
 
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-                <TextInput
-                    id="password"
-                    v-model="form.password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="new-password"
-                />
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
+                <v-card-text class="mt-5">
 
-            <div class="mt-4">
-                <InputLabel for="password_confirmation" value="Confirm Password" />
-                <TextInput
-                    id="password_confirmation"
-                    v-model="form.password_confirmation"
-                    type="password"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="new-password"
-                />
-                <InputError class="mt-2" :message="form.errors.password_confirmation" />
-            </div>
+                    <v-text-field
+                        id="email"
+                        v-model="form.email"
+                        type="email"
+                        label="Enter Email"
+                        required
+                        autofocus
+                        autocomplete="username"
+                        :error-messages="form.errors.email"
+                    />
 
-            <div class="flex items-center justify-end mt-4">
-                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Reset Password
-                </PrimaryButton>
-            </div>
+                    <v-text-field
+                        id="password"
+                        v-model="form.password"
+                        type="password"
+                        label="Enter New Password"
+                        required
+                        autocomplete="new-password"
+                        :error-messages="form.errors.password"
+                    />
+
+                    <v-text-field
+                        id="password_confirmation"
+                        v-model="form.password_confirmation"
+                        type="password"
+                        label="Confirm Password"
+                        required
+                        autocomplete="new-password"
+                        :error-messages="form.errors.password_confirmation"
+                    />
+                </v-card-text>
+
+                <v-card-actions>
+                    <v-btn block variant="flat" size="large" type="submit" :loading="form.processing">
+                        Continue
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
         </form>
-    </AuthenticationCard>
+    </Default>
 </template>

@@ -1,0 +1,31 @@
+.glass {
+    background: rgba(255, 255, 255, 0.5) !important;
+    border-radius: 10px !important;
+    box-shadow: 8px 10px 30px rgba(0, 100, 0, 0.1) !important;
+    backdrop-filter: blur(0px) !important;
+    -webkit-backdrop-filter: blur(0px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.64) !important;
+    padding: .75rem;
+}
+
+.glass-shadow{
+    box-shadow: 8px 10px 30px rgba(0, 100, 0, 0.1) !important;
+    backdrop-filter: blur(0px) !important;
+    -webkit-backdrop-filter: blur(0px) !important;
+}
+
+.glass-border{
+    box-shadow: 4px 5px 10px rgba(0, 50, 0, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.64) !important;
+}
+
+
+.InertiaLink{
+    text-decoration: none !important;
+    color: unset !important;
+    width: 100%;
+}
+
+.v-btn {
+    text-transform: unset !important;
+}

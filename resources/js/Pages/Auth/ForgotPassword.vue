@@ -1,11 +1,6 @@
 <script setup>
 import { Head, useForm } from '@inertiajs/vue3';
-import AuthenticationCard from '@/Components/AuthenticationCard.vue';
-import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+import Default from "@/Layouts/Default.vue";
 
 defineProps({
     status: String,
@@ -23,39 +18,37 @@ const submit = () => {
 <template>
     <Head title="Forgot Password" />
 
-    <AuthenticationCard>
-        <template #logo>
-            <AuthenticationCardLogo />
-        </template>
-
-        <div class="mb-4 text-sm text-gray-600">
-            Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.
-        </div>
-
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-            {{ status }}
-        </div>
-
+    <Default>
         <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
-                <TextInput
-                    id="email"
-                    v-model="form.email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    required
-                    autofocus
-                    autocomplete="username"
-                />
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
+            <v-card class="glass mx-auto" max-width="500">
+                <v-card-text class="text-center mt-3">
+                    <h1>Forgot Password?</h1>
+                    <hr class="my-2">
+                    <p>
+                        Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.
+                    </p>
+                </v-card-text>
 
-            <div class="flex items-center justify-end mt-4">
-                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Email Password Reset Link
-                </PrimaryButton>
-            </div>
+                <v-card-text class="mt-5">
+                    <v-text-field
+                        id="email"
+                        v-model="form.email"
+                        type="email"
+                        label="Enter your Email"
+                        required
+                        autofocus
+                        autocomplete="username"
+                        :error-messages="form.errors.email"
+                    />
+                </v-card-text>
+
+                <v-card-actions>
+                    <v-btn block variant="flat" size="large" type="submit" :loading="form.processing">
+                        Email Password Reset Link
+                    </v-btn>
+                </v-card-actions>
+                <br>
+            </v-card>
         </form>
-    </AuthenticationCard>
+    </Default>
 </template>
